@@ -6,7 +6,7 @@ import java.util.Scanner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cdb.data.memory.EstoqueDate;
+import com.cdb.data.EstoqueDate;
 import com.cdb.model.Produto;
 import com.cdb.repository.ProdutoRepository;
 

@@ -15,6 +15,7 @@ import com.cdb.service.EstoqueService;
 import com.cdb.service.VendasService;
 
 @RestController
+@RequestMapping(value = "/product")
 public class ProdutoController {
 	@Autowired(required = true)
 	EstoqueService estoqueService;

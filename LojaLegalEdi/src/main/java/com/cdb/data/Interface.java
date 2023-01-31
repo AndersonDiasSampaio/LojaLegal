@@ -1,4 +1,4 @@
-package com.cdb.data.memory;
+package com.cdb.data;
 
 import java.util.List;
 

@@ -60,7 +60,7 @@ public class SellControler {
 	@RequestMapping(method = RequestMethod.GET, value = "/produtoshist")
 	public ResponseEntity<Object> getHistoryofSell() {
 
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body( sellRepository.findAll());
+		return ResponseEntity.status(HttpStatus.ACCEPTED).body( sellService.getSellDataList());
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delprodutocard")

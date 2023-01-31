@@ -24,11 +24,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 
-/*
- * CRIAR ENUMS PRA OS TIPOS DE PAGAMENTO
- * DEPOIS SETAR AS ENUMS
- *  
-*/
+
 @Entity
 @Table(name = "venda")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
@@ -109,25 +105,7 @@ public class Venda implements Serializable{
 	public void setTipoDePagamento(String tipoDePagamento, String value) {
 		 this.tipoDePagamento.setCodigo(tipoDePagamento);
 		 this.tipoDePagamento.setTipo(value);
-		/*if (tipoDePagamento.equals("PIX")) {
-			Pix a = new Pix();
-			a.setKey(value);
-			this.tipoDePagamento = a;
 
-		} else if (tipoDePagamento.equals("DINHEIRO")) {
-			Dinheiro a = new Dinheiro();
-			a.TipoDPagemento(value);
-			this.tipoDePagamento = a;
-
-		} else if (tipoDePagamento.equals("CartaoDeCredito")) {
-			CartaoDeCredito a = new CartaoDeCredito();
-			a.TipoDPagemento(value);
-			this.tipoDePagamento = a;
-		} else if (tipoDePagamento.equals("CartaoDeDebito")) {
-			CartaoDeDebito a = new CartaoDeDebito();
-			a.TipoDPagemento(value);
-			this.tipoDePagamento = a;
-		}*/
 	}
 
 	public List<ProdutoComprado> getProdutos() {
