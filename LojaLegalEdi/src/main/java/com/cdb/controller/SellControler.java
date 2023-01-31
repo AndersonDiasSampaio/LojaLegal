@@ -20,10 +20,7 @@ import com.cdb.service.VendasService;
 public class SellControler {
 	@Autowired
 	VendasService sellService;
-	@Autowired
-	VendasRepository sellRepository;
-	@Autowired
-	PessoaRepository peapleRepository;
+	
 	@Autowired
 	EstoqueService productService;
 	
