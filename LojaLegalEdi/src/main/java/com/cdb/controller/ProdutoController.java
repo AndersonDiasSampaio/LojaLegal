@@ -25,10 +25,6 @@ public class ProdutoController {
 		// TODO Auto-generated constructor stub
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/teste")
-	public String Teste() {
-		return "olá, o teste está feito";
-	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/produto")
 	public List<Produto> getProduto() {

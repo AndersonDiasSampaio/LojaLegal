@@ -17,6 +17,7 @@ import com.cdb.service.EstoqueService;
 import com.cdb.service.VendasService;
 
 @RestController
+@RequestMapping(value = "/sell")
 public class SellControler {
 	@Autowired
 	VendasService sellService;
@@ -48,9 +49,7 @@ public class SellControler {
 
 		sellService.sellStockTestAndBuy(pessoa.getCpf(), PaymentMethod, valueBancaryData, pessoa.getNome(),
 				pessoa.getEndereco());
-		System.out.println(sellService.getSellData().getSell());
-/*
-		vendasRepository.save(vendasService.getSellData().getSell());*/
+
 		sellService.cancel();
 	}
 

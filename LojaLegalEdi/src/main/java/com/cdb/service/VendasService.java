@@ -86,17 +86,7 @@ public class VendasService {
 		double priceToBil = 0d;
 		Object obj;
 		int negativeCount = productIncardToSell().size();
-		System.out.println(CPF );
-		System.out.println( PaymentMethod);
-		System.out.println(name);
-		System.out.println(endereco);
-		System.out.println(negativeCount);
-		
-		System.out.println(Stock.listItems().size());
-		System.out.println(sellData.listProduct().size());
-		System.out.println(Stock.listItems());
-		System.out.println(sellData.listProduct());
-
+	
 		if (sellData.listProduct().size() > 0) {
 			for (int x = 0; x < Stock.listItems().size(); x++) {
 				
@@ -112,7 +102,6 @@ public class VendasService {
 				}
 
 			}
-			System.out.println(negativeCount);
 
 			if (negativeCount == 0) {
 				for (int x = 0; x < Stock.listItems().size(); x++) {
@@ -135,9 +124,7 @@ public class VendasService {
 					}
 
 				}
-				System.out.println("/////////////////////////////////////////////");
-
-				System.out.println(Stock.listItems());
+			
 
 				sellData.save(priceToBil, CPF, PaymentMethod, valueBancaryData, name, endereco);
 				pedidoRealizado = true;

@@ -52,7 +52,6 @@ public class EstoqueService {
 		} else {
 			produtoSetado.setQuantidade(produtoSetado.getQuantidade()+estoque.produrarProduto(produto.getSku()).getQuantidade());
 			produtoSetado.setId(estoque.produrarProduto(produto.getSku()).getId());
-			System.out.println(produtoSetado);
 			estoque.update(produtoSetado);;
 		}
 
