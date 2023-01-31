@@ -1,26 +1,20 @@
 package com.cdb.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.springframework.data.relational.core.mapping.Column;
 
 import com.cdb.Enum.CategoriaEnum;
 import com.cdb.Enum.CorEnum;
 import com.cdb.Enum.DepartamentoEnum;
 import com.cdb.Enum.TamanhoEnum;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -33,7 +27,7 @@ public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column("id")
+	@Column(name="id")
 	private long id;
 	@Column
 	private String sku;
