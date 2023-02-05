@@ -22,46 +22,38 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
-
-
 @Entity
 @Table(name = "venda")
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Sell implements Serializable{
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class Sell implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
-    @JsonIgnore
+	@Column(name = "id")
+	@JsonIgnore
 	private long id;
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinColumn(name = "pessoa_id" )
-	private Pessoa pessoa = new Pessoa();
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinColumn(name = "pessoa_id")
+	private Pessoa pessoa;
 	@Column
 	private String dateTime;
 	@Column
 	private Double total;
-	
-	
-	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
+
+	@ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "vendas_produtos", joinColumns = @JoinColumn(name = "produtocomprado_id"))
 	private List<PurchasedProduct> products = new ArrayList();
-	@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
-	@JoinColumn(name = "pagamento_id" )
-	Pagamento tipoDePagamento=new Pagamento();
+	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+	@JoinColumn(name = "pagamento_id")
+	Pagamento tipoDePagamento;
 
-	public Sell(String nome, String cpf, String endereco) {
-		// super(nome, cpf, endereco);
-		this.pessoa.setNome(nome);
-		this.pessoa.setCpf(cpf);
-		this.pessoa.setEndereco(endereco);
-
-	}
+	
 
 	public Sell() {
 		// TODO Auto-generated constructor stub
-		pessoa = new Pessoa();
+		this.tipoDePagamento = new Pagamento();
+		this.pessoa = new Pessoa();
 	}
 
 	public Double getTotal() {
@@ -91,19 +83,21 @@ public class Sell implements Serializable{
 	}
 
 	public void setPessoa(String cpf, String endereco, String nome) {
+		this.pessoa = new Pessoa();
 		this.pessoa.setCpf(cpf);
 		this.pessoa.setEndereco(endereco);
 		this.pessoa.setNome(nome);
 
 	}
-	 
+
 	public Pagamento getTipoDePagamento() {
 		return tipoDePagamento;
 	}
 
 	public void setTipoDePagamento(String tipoDePagamento, String value) {
-		 this.tipoDePagamento.setCodigo(tipoDePagamento);
-		 this.tipoDePagamento.setTipo(value);
+		this.tipoDePagamento = new Pagamento();
+		this.tipoDePagamento.setCodigo(tipoDePagamento);
+		this.tipoDePagamento.setTipo(value);
 
 	}
 

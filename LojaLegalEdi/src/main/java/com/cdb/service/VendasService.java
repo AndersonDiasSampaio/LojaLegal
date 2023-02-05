@@ -92,8 +92,8 @@ public class VendasService {
 				
 				for (int y = 0; y < productIncardToSell().size(); y++) {
 					PurchasedProduct p8 = (PurchasedProduct) getSellData().getItem(y);
-					if ((p8.getSku().equals(Stock.procurarProduto(x).getSku()))
-							&& (p8.getQuantity() <= Stock.procurarProduto(x).getQuantity())) {
+					if ((p8.getSku().equals(Stock.searchProductInList(x).getSku()))
+							&& (p8.getQuantity() <= Stock.searchProductInList(x).getQuantity())) {
 						
 						negativeCount--;
 
@@ -107,16 +107,16 @@ public class VendasService {
 				for (int x = 0; x < Stock.listItems().size(); x++) {
 					for (int y = 0; y < productIncardToSell().size(); y++) {
 						PurchasedProduct p8 = (PurchasedProduct) getSellData().getItem(y);
-						if (p8.getSku().equals(Stock.procurarProduto(x).getSku())) {
-							p8.setCategory(Stock.procurarProduto(x).getCategory());
-							p8.setDescription(Stock.procurarProduto(x).getDescription());
-							p8.setColor(Stock.procurarProduto(x).getColor());
-							p8.setSize(Stock.procurarProduto(x).getSize());
-							p8.setDepartment(Stock.procurarProduto(x).getDepartment());
-							p8.setValue(Stock.procurarProduto(x).getValue());
-							Stock.procurarProduto(x)
-									.setQuantity(Stock.procurarProduto(x).getQuantity() - p8.getQuantity());
-							Stock.updateProduto(Stock.procurarProduto(x));
+						if (p8.getSku().equals(Stock.searchProductInList(x).getSku())) {
+							p8.setCategory(Stock.searchProductInList(x).getCategory());
+							p8.setDescription(Stock.searchProductInList(x).getDescription());
+							p8.setColor(Stock.searchProductInList(x).getColor());
+							p8.setSize(Stock.searchProductInList(x).getSize());
+							p8.setDepartment(Stock.searchProductInList(x).getDepartment());
+							p8.setValue(Stock.searchProductInList(x).getValue());
+							Stock.searchProductInList(x)
+									.setQuantity(Stock.searchProductInList(x).getQuantity() - p8.getQuantity());
+							Stock.updateProduto(Stock.searchProductInList(x));
 							priceToBil = (p8.getValue() * p8.getQuantity()) + priceToBil;
 
 						}

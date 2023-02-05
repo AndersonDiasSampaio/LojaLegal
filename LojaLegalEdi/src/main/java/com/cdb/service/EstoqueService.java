@@ -26,47 +26,52 @@ public class EstoqueService {
 	}
 
 	// Procurar produto por sku
-	public Product procurarProduto(String sku) {
+	public Product searchProductbySku(String sku) {
 
-		for (int x = 0; x < listItems().size(); x++) {
-			Product produto = (Product) listItems().get(x);
-			if (sku.equals(produto.getSku())) {
-				return produto;
-			}
-
-		}
-		return null;
+		return stock.productBySKU(sku);
 	}
 
-	public Product procurarProduto(int valor) {
+	public Product searchProductInList(int interator) {
 
-		return (Product) listItems().get(valor);
+		return (Product) listItems().get(interator);
 	}
 
 	// registrar o produto
-	public void registrarProduto(Product produto) {
-
+	public boolean registProduct(Product produto) {
+		boolean status= false;
 		Product produtoSetado = new Product(produto.getSku(), produto.getQuantity(), produto.getValue(),
 				produto.getDescription());
-		if (stock.productProduto(produto.getSku()) == null) {
-			stock.save(produtoSetado);
-			// fazer uns ifs aqui pra verificar se o produto é nulo, colocar um bloco
-			// trycatch quando for pegar um produto com sku e verificar se algum é nulo na classe produto.
+		if ((produtoSetado.getColor() == null) || (produtoSetado.getDepartment() == null)
+				|| (produtoSetado.getCategory() == null) || (produtoSetado.getSize() == null)) {
+			System.out.print(produtoSetado);
+			return status;
+
 		} else {
-			produtoSetado.setQuantity(
-					produtoSetado.getQuantity() + stock.productProduto(produto.getSku()).getQuantity());
-			produtoSetado.setId(stock.productProduto(produto.getSku()).getId());
-			stock.update(produtoSetado);
-			;
+			if ((searchProductbySku(produto.getSku()) == null)) {
+				stock.save(produtoSetado);
+				// fazer uns ifs aqui pra verificar se o produto é nulo, colocar um bloco
+				// trycatch quando for pegar um produto com sku e verificar se algum é nulo na
+				// classe produto.
+				status= true;
+				return status;
+			} else {
+				produtoSetado.setQuantity(
+						produtoSetado.getQuantity() + searchProductbySku(produto.getSku()).getQuantity());
+				produtoSetado.setId(searchProductbySku(produto.getSku()).getId());
+				stock.update(produtoSetado);
+				status= true;
+				return status;
+			}
 		}
 
 	}
 
 //excluir o produto
-	public String excluirProduto(String sku) {
-
-		this.stock.delete(sku);
-		return null;
+	//mudei pra boolean era string
+	public boolean excluirProduto(String sku) {
+//quem usar isso vai usar hhtp ok ou http not found
+		
+		return this.stock.delete(sku);
 
 	}
 }

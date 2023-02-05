@@ -28,7 +28,7 @@ public class EstoqueDate  {
 		
 	}
 
-	public Product productProduto(String Sku) {
+	public Product productBySKU(String Sku) {
 		Product p = this.produtoRepository.findBySku(Sku);
 		return p;
 	

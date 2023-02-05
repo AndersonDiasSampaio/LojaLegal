@@ -55,8 +55,8 @@ public class SellControler {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/produtoshist")
 	public ResponseEntity<Object> getHistoryofSell() {
-
-		return ResponseEntity.status(HttpStatus.ACCEPTED).body( sellService.getSellDataList());
+	//ResponseEntity.status(HttpStatus.)
+		return ResponseEntity.status(HttpStatus.OK).body( sellService.getSellDataList());
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delprodutocard")

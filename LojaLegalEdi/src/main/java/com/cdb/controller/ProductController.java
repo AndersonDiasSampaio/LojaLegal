@@ -37,7 +37,7 @@ public class ProductController {
 		
 		//Produto n = new Produto("SIMazuFEMPEQ", 20, 20d, "teste");
 		//produtoRepository.save(n);
-		stockService.registrarProduto(produto);
+		stockService.registProduct(produto);
 		//return estoqueService.listItems();
 	}
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delproduto/{sku}")

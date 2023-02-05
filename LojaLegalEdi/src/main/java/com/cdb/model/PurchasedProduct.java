@@ -145,10 +145,17 @@ public class PurchasedProduct implements Serializable {
 
 	// tive que refazer
 	private void dados() {
-		this.category = CategoryEnum.getCategoriaEnum(sku.substring(0, 3));
-		this.color = ColorEnum.getCorEnum(sku.substring(3, 6));
-		this.department = DepartmentEnum.getDepartamentoEnum(sku.substring(6, 9));
-		this.size = SizeEnum.getTamanhoEnum(sku.substring(9, 12));
+		try {
+			this.category = CategoryEnum.getCategoriaEnum(sku.substring(0, 3));
+			this.color = ColorEnum.getCorEnum(sku.substring(3, 6));
+			this.department = DepartmentEnum.getDepartamentoEnum(sku.substring(6, 9));
+			this.size = SizeEnum.getTamanhoEnum(sku.substring(9, 12));
+		} catch (Exception e) {
+			this.category = null;
+			this.color = null;
+			this.department = null;
+			this.size = null;
+		}
 	}
 
 	@Override

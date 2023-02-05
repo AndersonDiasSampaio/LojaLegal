@@ -13,12 +13,12 @@ import com.cdb.repository.VendasRepository;
 public class SellData {
 	@Autowired
 	VendasRepository vendasRepository;
-	private List<Sell> sellData = new ArrayList();
 	
-	private Sell sell = new Sell();
+	private Sell sell;
 
 	public SellData() {
 		// TODO Auto-generated constructor stub
+		this.sell = new Sell();
 
 	}
 
@@ -87,7 +87,6 @@ public class SellData {
 		
 		this.sell.setPrice(price);
 		vendasRepository.save(this.sell);
-		sellData.add(this.sell);
 		
 
 	}
@@ -105,7 +104,7 @@ public class SellData {
 
 	@Override
 	public String toString() {
-		return "SellData [sellData=" + sellData + ", sell=" + sell + "]";
+		return "SellData [ sell=" + sell + "]";
 	}
 
 }
