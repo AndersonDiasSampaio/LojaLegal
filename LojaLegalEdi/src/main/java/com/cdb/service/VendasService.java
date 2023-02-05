@@ -33,7 +33,7 @@ public class VendasService {
 		}
 		return null;
 	}
-
+//VAI VIRAR BOLEANO
 	public String excluirProduto(String sku) {
 		PurchasedProduct produto = procurarProduto(sku);
 		if (produto != null) {
