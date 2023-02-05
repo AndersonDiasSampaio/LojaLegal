@@ -21,19 +21,14 @@ public class EstoqueDate  {
 
 	
 	
-	public boolean save(Object obj) {
+	public void save(Object obj) {
 
 		this.produtoRepository.save((Product) obj);
 
-		/*
-		 * if(estoqueDate.add(obj)) {
-		 * 
-		 * } else { return true; }
-		 */
-		return false;
+		
 	}
 
-	public Product produrarProduto(String Sku) {
+	public Product productProduto(String Sku) {
 		Product p = this.produtoRepository.findBySku(Sku);
 		return p;
 	
@@ -58,7 +53,7 @@ public class EstoqueDate  {
 		}
 	}
 
-	public List<Product> listEstoque() {
+	public List<Product> listStock() {
 		List<Product> p= this.produtoRepository.findAll();
 		return p;
 	}

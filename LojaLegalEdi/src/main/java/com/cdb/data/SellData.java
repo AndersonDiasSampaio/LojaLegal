@@ -6,28 +6,28 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import com.cdb.model.ProdutoComprado;
-import com.cdb.model.Venda;
+import com.cdb.model.PurchasedProduct;
+import com.cdb.model.Sell;
 import com.cdb.repository.VendasRepository;
 @Controller
 public class SellData {
 	@Autowired
 	VendasRepository vendasRepository;
-	private List<Venda> sellData = new ArrayList();
+	private List<Sell> sellData = new ArrayList();
 	
-	private Venda sell = new Venda();
+	private Sell sell = new Sell();
 
 	public SellData() {
 		// TODO Auto-generated constructor stub
 
 	}
 
-	public Venda getSell() {
+	public Sell getSell() {
 		return sell;
 	}
 
-	public boolean delete(ProdutoComprado produto) {
-		ProdutoComprado p = new ProdutoComprado(produto.getSku(), produto.getQuantidade(), produto.getValor(), produto.getDescricao());
+	public boolean delete(PurchasedProduct product) {
+		PurchasedProduct p = new PurchasedProduct(product.getSku(), product.getQuantity(), product.getValue(), product.getDescription());
 
 		return this.sell.deleteProduto(p);
 
@@ -35,18 +35,18 @@ public class SellData {
 
 	public void update(Object obj) {
 		boolean b = false;
-		ProdutoComprado pr = (ProdutoComprado) obj;
+		PurchasedProduct pr = (PurchasedProduct) obj;
 		for (Object element : sell.getProdutos()) {
-			ProdutoComprado product = (ProdutoComprado) element;
+			PurchasedProduct product = (PurchasedProduct) element;
 			System.out.println(product.getSku());
 			if (pr.getSku().equals(product.getSku())) {// mexi no pr.gerSku era == não equals
-				product.setCategoria(pr.getCategoria());
-				product.setCor(pr.getCor());
-				product.setDepartamento(pr.getDepartamento());
-				product.setDescricao(pr.getDescricao());
-				product.setValor(pr.getValor());
-				product.setQuantidade(pr.getQuantidade() + product.getQuantidade());
-				product.setTamanho(pr.getTamanho());
+				product.setCategory(pr.getCategory());
+				product.setColor(pr.getColor());
+				product.setDepartment(pr.getDepartment());
+				product.setDescription(pr.getDescription());
+				product.setValue(pr.getValue());
+				product.setQuantity(pr.getQuantity() + product.getQuantity());
+				product.setSize(pr.getSize());
 				b = true;
 			}
 		}
@@ -55,7 +55,7 @@ public class SellData {
 		}
 	}
 
-	public List<Venda> listItens() {
+	public List<Sell> listItens() {
 		return vendasRepository.findAll(); //mechi aqui
 	}
 
@@ -66,14 +66,14 @@ public class SellData {
 	}
 
 	public void save(Object obj) {
-		ProdutoComprado product = (ProdutoComprado) obj;
+		PurchasedProduct product = (PurchasedProduct) obj;
 		// TODO Auto-generated method stub
 		this.sell.setProdutos(product);
 
 	}
 
 	public void refrestcard() {
-		this.sell = new Venda();
+		this.sell = new Sell();
 	}
 
 	
@@ -94,12 +94,12 @@ public class SellData {
 
 
 
-	public List<ProdutoComprado> listProduct() {
+	public List<PurchasedProduct> listProduct() {
 
 		return this.sell.getProdutos();
 	}
 
-	public void  deleteProdutoIncard(ProdutoComprado produto) {
+	public void  deleteProdutoIncard(PurchasedProduct produto) {
 		 this.sell.deleteProduto(produto);
 	}
 

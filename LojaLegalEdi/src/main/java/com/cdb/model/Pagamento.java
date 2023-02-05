@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-import com.cdb.Enum.PagamentoEnum;
+import com.cdb.Enum.PaymentEnum;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -35,17 +35,17 @@ public class Pagamento implements Serializable {
 	@Column
 	private String codigo;
 	@Enumerated(EnumType.STRING)
-	private PagamentoEnum tipo;
+	private PaymentEnum tipo;
 
 	@OneToMany(mappedBy = "tipoDePagamento", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Venda> Vendas = new ArrayList();
+	private List<Sell> Vendas = new ArrayList();
 
 	public long getId() {
 		return id;
 	}
 
-	public List<Venda> getVendas() {
+	public List<Sell> getVendas() {
 		return Vendas;
 	}
 
@@ -61,15 +61,15 @@ public class Pagamento implements Serializable {
 		this.codigo = tipo;
 	}
 
-	public PagamentoEnum getTipo() {
+	public PaymentEnum getTipo() {
 		return tipo;
 	}
 
 	public void setCodigo(String codigo) {
-		this.tipo = PagamentoEnum.getCategoriaEnum(codigo);
+		this.tipo = PaymentEnum.getCategoriaEnum(codigo);
 	}
 
-	public Pagamento(String tipo, PagamentoEnum codigo, List<Venda> vendas) {
+	public Pagamento(String tipo, PaymentEnum codigo, List<Sell> vendas) {
 		super();
 		this.codigo = tipo;
 		this.tipo = codigo;

@@ -37,7 +37,7 @@ public class Pessoa implements Serializable {
 
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Venda> Vendas = new ArrayList();
+	private List<Sell> Vendas = new ArrayList();
 
 	public Pessoa(String nome, String cpf, String endereco) {
 		super();
@@ -86,7 +86,7 @@ public class Pessoa implements Serializable {
 		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + "]";
 	}
 
-	public List<Venda> getVendas() {
+	public List<Sell> getVendas() {
 		return Vendas;
 	}
 

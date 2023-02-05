@@ -17,7 +17,7 @@ public class EstoqueService {
 	private EstoqueDate stock;
 
 	public List<Product> listItems() {
-		return stock.listEstoque();
+		return stock.listStock();
 
 	}
 
@@ -48,14 +48,14 @@ public class EstoqueService {
 
 		Product produtoSetado = new Product(produto.getSku(), produto.getQuantity(), produto.getValue(),
 				produto.getDescription());
-		if (stock.produrarProduto(produto.getSku()) == null) {
+		if (stock.productProduto(produto.getSku()) == null) {
 			stock.save(produtoSetado);
 			// fazer uns ifs aqui pra verificar se o produto é nulo, colocar um bloco
 			// trycatch quando for pegar um produto com sku e verificar se algum é nulo na classe produto.
 		} else {
 			produtoSetado.setQuantity(
-					produtoSetado.getQuantity() + stock.produrarProduto(produto.getSku()).getQuantity());
-			produtoSetado.setId(stock.produrarProduto(produto.getSku()).getId());
+					produtoSetado.getQuantity() + stock.productProduto(produto.getSku()).getQuantity());
+			produtoSetado.setId(stock.productProduto(produto.getSku()).getId());
 			stock.update(produtoSetado);
 			;
 		}

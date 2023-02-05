@@ -1,33 +1,38 @@
 package com.cdb.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.cdb.Enum.CategoryEnum;
 import com.cdb.Enum.ColorEnum;
 import com.cdb.Enum.DepartmentEnum;
 import com.cdb.Enum.SizeEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Table(name = "produto")
+@Table(name = "produto_comprado")
 @Data
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Product implements Serializable {
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
+public class PurchasedProduct implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	private long id;
 	@Column
 	private String sku;
@@ -49,9 +54,17 @@ public class Product implements Serializable {
 
 	@Enumerated(EnumType.STRING)
 	private SizeEnum size;
-	
 
-	public Product(String sku, int quantity, double value, String description) {
+	@ManyToMany(mappedBy = "products", fetch = FetchType.LAZY)
+	@JsonIgnore
+	private List<Sell> sells = new ArrayList();
+
+	@JsonIgnore
+	public List<Sell> getProdutos() {
+		return sells;
+	}
+
+	public PurchasedProduct(String sku, int quantity, double value, String description) {
 		super();
 		this.sku = sku;
 		this.quantity = quantity;
@@ -61,7 +74,7 @@ public class Product implements Serializable {
 		dados();
 	}
 
-	public Product() {
+	public PurchasedProduct() {
 		// TODO Auto-generated constructor stub
 	}
  

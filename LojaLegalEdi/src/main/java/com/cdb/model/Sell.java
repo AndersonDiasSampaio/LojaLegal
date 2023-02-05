@@ -27,7 +27,7 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "venda")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Venda implements Serializable{
+public class Sell implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -46,12 +46,12 @@ public class Venda implements Serializable{
 	
 	@ManyToMany(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinTable(name = "vendas_produtos", joinColumns = @JoinColumn(name = "produtocomprado_id"))
-	private List<ProdutoComprado> produtos = new ArrayList();
+	private List<PurchasedProduct> products = new ArrayList();
 	@ManyToOne(cascade=CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name = "pagamento_id" )
 	Pagamento tipoDePagamento=new Pagamento();
 
-	public Venda(String nome, String cpf, String endereco) {
+	public Sell(String nome, String cpf, String endereco) {
 		// super(nome, cpf, endereco);
 		this.pessoa.setNome(nome);
 		this.pessoa.setCpf(cpf);
@@ -59,7 +59,7 @@ public class Venda implements Serializable{
 
 	}
 
-	public Venda() {
+	public Sell() {
 		// TODO Auto-generated constructor stub
 		pessoa = new Pessoa();
 	}
@@ -68,8 +68,8 @@ public class Venda implements Serializable{
 		return total;
 	}
 
-	public ProdutoComprado getProductInTheList(int x) {
-		return produtos.get(x);
+	public PurchasedProduct getProductInTheList(int x) {
+		return products.get(x);
 	}
 
 	public void setPrice(Double price) {
@@ -107,22 +107,22 @@ public class Venda implements Serializable{
 
 	}
 
-	public List<ProdutoComprado> getProdutos() {
-		return produtos;
+	public List<PurchasedProduct> getProdutos() {
+		return products;
 	}
 
-	public void setProdutos(ProdutoComprado vender) {
-		this.produtos.add(vender);
+	public void setProdutos(PurchasedProduct vender) {
+		this.products.add(vender);
 	}
 
-	public boolean deleteProduto(ProdutoComprado produdo) {
-		return this.produtos.remove(produdo);
+	public boolean deleteProduto(PurchasedProduct produdo) {
+		return this.products.remove(produdo);
 	}
 
 	@Override
 	public String toString() {
 		return "Venda [pessoa=" + pessoa + ", total=" + total + ", tipoDePagamento=" + tipoDePagamento + ", dateTime="
-				+ dateTime + ", price=" + total + ", vender=" + produtos + "]";
+				+ dateTime + ", price=" + total + ", vender=" + products + "]";
 	}
 
 	@Override
@@ -133,7 +133,7 @@ public class Venda implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Venda other = (Venda) obj;
+		Sell other = (Sell) obj;
 		return id == other.id;
 	}
 

@@ -16,12 +16,12 @@ import com.cdb.service.VendasService;
 
 @RestController
 @RequestMapping(value = "/product")
-public class ProdutoController {
+public class ProductController {
 	@Autowired(required = true)
-	EstoqueService estoqueService;
+	EstoqueService stockService;
 
 	
-	public ProdutoController() {
+	public ProductController() {
 		// TODO Auto-generated constructor stub
 	}
 
@@ -29,7 +29,7 @@ public class ProdutoController {
 	@RequestMapping(method = RequestMethod.GET, value = "/produto")
 	public List<Product> getProduto() {
 	
-		return estoqueService.listItems();
+		return stockService.listItems();
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, value = "/produto")
@@ -37,13 +37,13 @@ public class ProdutoController {
 		
 		//Produto n = new Produto("SIMazuFEMPEQ", 20, 20d, "teste");
 		//produtoRepository.save(n);
-		estoqueService.registrarProduto(produto);
+		stockService.registrarProduto(produto);
 		//return estoqueService.listItems();
 	}
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delproduto/{sku}")
 	public void deleteProduto(@PathVariable  String sku) {
 		
-		estoqueService.excluirProduto(sku);
+		stockService.excluirProduto(sku);
 		
 	}
 }

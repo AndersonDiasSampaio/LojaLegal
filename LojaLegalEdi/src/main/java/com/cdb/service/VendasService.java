@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.cdb.data.SellData;
 import com.cdb.model.Product;
-import com.cdb.model.ProdutoComprado;
-import com.cdb.model.Venda;
+import com.cdb.model.PurchasedProduct;
+import com.cdb.model.Sell;
 
 @Service
 public class VendasService {
@@ -22,10 +22,10 @@ public class VendasService {
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProdutoComprado procurarProduto(String sku) {
+	public PurchasedProduct procurarProduto(String sku) {
 
 		for (int x = 0; x < productIncardToSell().size(); x++) {
-			ProdutoComprado produto = (ProdutoComprado) productIncardToSell().get(x);
+			PurchasedProduct produto = (PurchasedProduct) productIncardToSell().get(x);
 			if (sku.equals(produto.getSku())) {
 				return produto;
 			}
@@ -35,7 +35,7 @@ public class VendasService {
 	}
 
 	public String excluirProduto(String sku) {
-		ProdutoComprado produto = procurarProduto(sku);
+		PurchasedProduct produto = procurarProduto(sku);
 		if (produto != null) {
 			sellData.deleteProdutoIncard(produto);
 			return "Excludio";
@@ -46,14 +46,14 @@ public class VendasService {
 
 	}
 
-	public boolean addProductCard(ProdutoComprado product, int quantity) {
-		ProdutoComprado p = new ProdutoComprado(product.getSku(), product.getQuantidade(), product.getValor(), product.getDescricao());
+	public boolean addProductCard(PurchasedProduct product, int quantity) {
+		PurchasedProduct p = new PurchasedProduct(product.getSku(), product.getQuantity(), product.getValue(), product.getDescription());
 		boolean addcard = false;
 		if (p.getSku() == null) {
 			return addcard;
 		} else {
 
-			p.setQuantidade(quantity);
+			p.setQuantity(quantity);
 			Object p2 = p;
 			sellData.update(p2);
 			addcard = true;
@@ -61,7 +61,7 @@ public class VendasService {
 		}
 	}
 
-	public List<ProdutoComprado> productIncardToSell() {
+	public List<PurchasedProduct> productIncardToSell() {
 		return sellData.listProduct();
 	}
 
@@ -69,7 +69,7 @@ public class VendasService {
 		return sellData;
 	}
 
-	public List<Venda> getSellDataList() {
+	public List<Sell> getSellDataList() {
 		return sellData.listItens();
 	}
 
@@ -91,9 +91,9 @@ public class VendasService {
 			for (int x = 0; x < Stock.listItems().size(); x++) {
 				
 				for (int y = 0; y < productIncardToSell().size(); y++) {
-					ProdutoComprado p8 = (ProdutoComprado) getSellData().getItem(y);
+					PurchasedProduct p8 = (PurchasedProduct) getSellData().getItem(y);
 					if ((p8.getSku().equals(Stock.procurarProduto(x).getSku()))
-							&& (p8.getQuantidade() <= Stock.procurarProduto(x).getQuantity())) {
+							&& (p8.getQuantity() <= Stock.procurarProduto(x).getQuantity())) {
 						
 						negativeCount--;
 
@@ -106,18 +106,18 @@ public class VendasService {
 			if (negativeCount == 0) {
 				for (int x = 0; x < Stock.listItems().size(); x++) {
 					for (int y = 0; y < productIncardToSell().size(); y++) {
-						ProdutoComprado p8 = (ProdutoComprado) getSellData().getItem(y);
+						PurchasedProduct p8 = (PurchasedProduct) getSellData().getItem(y);
 						if (p8.getSku().equals(Stock.procurarProduto(x).getSku())) {
-							p8.setCategoria(Stock.procurarProduto(x).getCategory());
-							p8.setDescricao(Stock.procurarProduto(x).getDescription());
-							p8.setCor(Stock.procurarProduto(x).getCorlor());
-							p8.setTamanho(Stock.procurarProduto(x).getSize());
-							p8.setDepartamento(Stock.procurarProduto(x).getDepartment());
-							p8.setValor(Stock.procurarProduto(x).getValue());
+							p8.setCategory(Stock.procurarProduto(x).getCategory());
+							p8.setDescription(Stock.procurarProduto(x).getDescription());
+							p8.setColor(Stock.procurarProduto(x).getColor());
+							p8.setSize(Stock.procurarProduto(x).getSize());
+							p8.setDepartment(Stock.procurarProduto(x).getDepartment());
+							p8.setValue(Stock.procurarProduto(x).getValue());
 							Stock.procurarProduto(x)
-									.setQuantity(Stock.procurarProduto(x).getQuantity() - p8.getQuantidade());
+									.setQuantity(Stock.procurarProduto(x).getQuantity() - p8.getQuantity());
 							Stock.updateProduto(Stock.procurarProduto(x));
-							priceToBil = (p8.getValor() * p8.getQuantidade()) + priceToBil;
+							priceToBil = (p8.getValue() * p8.getQuantity()) + priceToBil;
 
 						}
 

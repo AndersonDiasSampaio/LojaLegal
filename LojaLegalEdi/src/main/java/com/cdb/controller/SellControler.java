@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdb.model.Pessoa;
-import com.cdb.model.ProdutoComprado;
+import com.cdb.model.PurchasedProduct;
 import com.cdb.repository.PessoaRepository;
 import com.cdb.repository.VendasRepository;
 import com.cdb.service.EstoqueService;
@@ -31,9 +31,9 @@ public class SellControler {
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/adprodutos")
-	public boolean setProduto(@RequestBody ProdutoComprado produto) {
+	public boolean setProduto(@RequestBody PurchasedProduct produto) {
 
-		return sellService.addProductCard(produto, produto.getQuantidade());
+		return sellService.addProductCard(produto, produto.getQuantity());
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/produtos")
