@@ -5,12 +5,12 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.cdb.model.Produto;
+import com.cdb.model.Product;
 @Repository
-public interface ProdutoRepository extends JpaRepository<Produto, Long> {
+public interface ProdutoRepository extends JpaRepository<Product, Long> {
 	@Modifying
 	@Query(value = "update produto u set u.description = ? where u.sku = ?", nativeQuery = true)
 	int updateProdutoSku(String description , String sku);
-	Produto findBySku(String sku);
+	Product findBySku(String sku);
 	Long deleteBySku(String sku);
 }

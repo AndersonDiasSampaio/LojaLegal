@@ -7,28 +7,29 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdb.data.EstoqueDate;
-import com.cdb.model.Produto;
+import com.cdb.model.Product;
 import com.cdb.repository.ProdutoRepository;
 
 @Service
 public class EstoqueService {
 
 	@Autowired
-	private EstoqueDate estoque;
-	
-	public List<Produto> listItems() {
-		return estoque.listEstoque();
+	private EstoqueDate stock;
+
+	public List<Product> listItems() {
+		return stock.listEstoque();
 
 	}
-	public void updateProduto(Produto produto) {
-		estoque.update(produto);
+
+	public void updateProduto(Product produto) {
+		stock.update(produto);
 	}
-	
+
 	// Procurar produto por sku
-	public Produto procurarProduto(String sku) {
+	public Product procurarProduto(String sku) {
 
 		for (int x = 0; x < listItems().size(); x++) {
-			Produto produto = (Produto) listItems().get(x);
+			Product produto = (Product) listItems().get(x);
 			if (sku.equals(produto.getSku())) {
 				return produto;
 			}
@@ -37,32 +38,34 @@ public class EstoqueService {
 		return null;
 	}
 
-	public Produto procurarProduto(int valor) {
+	public Product procurarProduto(int valor) {
 
-		return (Produto)listItems().get(valor);
+		return (Product) listItems().get(valor);
 	}
 
 	// registrar o produto
-	public void registrarProduto(Produto produto) {
-	
-		Produto produtoSetado = new Produto(produto.getSku(), produto.getQuantidade(), produto.getValor(), produto.getDescricao());
-		if (estoque.produrarProduto(produto.getSku()) == null) {
-			estoque.save(produtoSetado);
-			
+	public void registrarProduto(Product produto) {
+
+		Product produtoSetado = new Product(produto.getSku(), produto.getQuantity(), produto.getValue(),
+				produto.getDescription());
+		if (stock.produrarProduto(produto.getSku()) == null) {
+			stock.save(produtoSetado);
+			// fazer uns ifs aqui pra verificar se o produto é nulo, colocar um bloco
+			// trycatch quando for pegar um produto com sku e verificar se algum é nulo na classe produto.
 		} else {
-			produtoSetado.setQuantidade(produtoSetado.getQuantidade()+estoque.produrarProduto(produto.getSku()).getQuantidade());
-			produtoSetado.setId(estoque.produrarProduto(produto.getSku()).getId());
-			estoque.update(produtoSetado);;
+			produtoSetado.setQuantity(
+					produtoSetado.getQuantity() + stock.produrarProduto(produto.getSku()).getQuantity());
+			produtoSetado.setId(stock.produrarProduto(produto.getSku()).getId());
+			stock.update(produtoSetado);
+			;
 		}
 
 	}
 
-
-
 //excluir o produto
 	public String excluirProduto(String sku) {
-	
-		this.estoque.delete(sku);
+
+		this.stock.delete(sku);
 		return null;
 
 	}

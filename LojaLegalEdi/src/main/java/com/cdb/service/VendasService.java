@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cdb.data.SellData;
-import com.cdb.model.Produto;
+import com.cdb.model.Product;
 import com.cdb.model.ProdutoComprado;
 import com.cdb.model.Venda;
 
@@ -93,7 +93,7 @@ public class VendasService {
 				for (int y = 0; y < productIncardToSell().size(); y++) {
 					ProdutoComprado p8 = (ProdutoComprado) getSellData().getItem(y);
 					if ((p8.getSku().equals(Stock.procurarProduto(x).getSku()))
-							&& (p8.getQuantidade() <= Stock.procurarProduto(x).getQuantidade())) {
+							&& (p8.getQuantidade() <= Stock.procurarProduto(x).getQuantity())) {
 						
 						negativeCount--;
 
@@ -108,14 +108,14 @@ public class VendasService {
 					for (int y = 0; y < productIncardToSell().size(); y++) {
 						ProdutoComprado p8 = (ProdutoComprado) getSellData().getItem(y);
 						if (p8.getSku().equals(Stock.procurarProduto(x).getSku())) {
-							p8.setCategoria(Stock.procurarProduto(x).getCategoria());
-							p8.setDescricao(Stock.procurarProduto(x).getDescricao());
-							p8.setCor(Stock.procurarProduto(x).getCor());
-							p8.setTamanho(Stock.procurarProduto(x).getTamanho());
-							p8.setDepartamento(Stock.procurarProduto(x).getDepartamento());
-							p8.setValor(Stock.procurarProduto(x).getValor());
+							p8.setCategoria(Stock.procurarProduto(x).getCategory());
+							p8.setDescricao(Stock.procurarProduto(x).getDescription());
+							p8.setCor(Stock.procurarProduto(x).getCorlor());
+							p8.setTamanho(Stock.procurarProduto(x).getSize());
+							p8.setDepartamento(Stock.procurarProduto(x).getDepartment());
+							p8.setValor(Stock.procurarProduto(x).getValue());
 							Stock.procurarProduto(x)
-									.setQuantidade(Stock.procurarProduto(x).getQuantidade() - p8.getQuantidade());
+									.setQuantity(Stock.procurarProduto(x).getQuantity() - p8.getQuantidade());
 							Stock.updateProduto(Stock.procurarProduto(x));
 							priceToBil = (p8.getValor() * p8.getQuantidade()) + priceToBil;
 
