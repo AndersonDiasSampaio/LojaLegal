@@ -11,14 +11,14 @@ import com.cdb.model.PurchasedProduct;
 import com.cdb.model.Sell;
 
 @Service
-public class VendasService {
+public class SalesService {
 	
 	@Autowired
-	private EstoqueService Stock;
+	private StockService Stock;
 	@Autowired
 	private SellData sellData;
 
-	public VendasService() {
+	public SalesService() {
 		// TODO Auto-generated constructor stub
 	}
 
