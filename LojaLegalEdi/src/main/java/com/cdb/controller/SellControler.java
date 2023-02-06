@@ -21,19 +21,24 @@ import com.cdb.service.VendasService;
 public class SellControler {
 	@Autowired
 	VendasService sellService;
-	
+
 	@Autowired
 	EstoqueService productService;
-	
 
 	public SellControler() {
 		// TODO Auto-generated constructor stub
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/adprodutos")
-	public boolean setProduto(@RequestBody PurchasedProduct produto) {
+	public ResponseEntity<Object> setProduto(@RequestBody PurchasedProduct produto) {
+		boolean control = sellService.addProductCard(produto, produto.getQuantity());
+		if (control == false) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+					.body("não foi possível adicionar o produto no carrinho verifique o SKU");
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body("produto adicionado com sucesso");
+		}
 
-		return sellService.addProductCard(produto, produto.getQuantity());
 	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/produtos")
@@ -55,14 +60,19 @@ public class SellControler {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/produtoshist")
 	public ResponseEntity<Object> getHistoryofSell() {
-	//ResponseEntity.status(HttpStatus.)
-		return ResponseEntity.status(HttpStatus.OK).body( sellService.getSellDataList());
+		// ResponseEntity.status(HttpStatus.)
+
+		return ResponseEntity.status(HttpStatus.OK).body(sellService.getSellDataList());
 	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delprodutocard")
-	public String deleteProduto(@RequestBody String Sku) {
-
-		return sellService.excluirProduto(Sku);
+	public ResponseEntity<Object> deleteProduto(@RequestBody String Sku) {
+		boolean z = sellService.deleteProduct(Sku);
+		if (z == false) {
+			return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("SKU inválido impossível excluir");
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body("Produto Excluido com sucesso");
+		}
 
 	}
 

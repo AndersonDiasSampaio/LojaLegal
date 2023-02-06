@@ -21,7 +21,7 @@ public class EstoqueService {
 
 	}
 
-	public void updateProduto(Product produto) {
+	public void updateProduct(Product produto) {
 		stock.update(produto);
 	}
 
@@ -68,7 +68,7 @@ public class EstoqueService {
 
 //excluir o produto
 	//mudei pra boolean era string
-	public boolean excluirProduto(String sku) {
+	public boolean deleteProduct(String sku) {
 //quem usar isso vai usar hhtp ok ou http not found
 		
 		return this.stock.delete(sku);

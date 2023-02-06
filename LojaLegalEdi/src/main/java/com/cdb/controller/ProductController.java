@@ -43,7 +43,7 @@ public class ProductController {
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delproduto/{sku}")
 	public void deleteProduto(@PathVariable  String sku) {
 		
-		stockService.excluirProduto(sku);
+		stockService.deleteProduct(sku);
 		
 	}
 }

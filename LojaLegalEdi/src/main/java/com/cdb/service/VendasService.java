@@ -22,7 +22,7 @@ public class VendasService {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PurchasedProduct procurarProduto(String sku) {
+	public PurchasedProduct searchProduct(String sku) {
 
 		for (int x = 0; x < productIncardToSell().size(); x++) {
 			PurchasedProduct produto = (PurchasedProduct) productIncardToSell().get(x);
@@ -34,14 +34,16 @@ public class VendasService {
 		return null;
 	}
 //VAI VIRAR BOLEANO
-	public String excluirProduto(String sku) {
-		PurchasedProduct produto = procurarProduto(sku);
+	public boolean deleteProduct(String sku) {
+		boolean  state=false;
+		PurchasedProduct produto = searchProduct(sku);
 		if (produto != null) {
 			sellData.deleteProdutoIncard(produto);
-			return "Excludio";
+			state=true;
+			return state;
 			
 		} else {
-			return "Inv�lido";
+			return state;
 		}
 
 	}
@@ -49,7 +51,8 @@ public class VendasService {
 	public boolean addProductCard(PurchasedProduct product, int quantity) {
 		PurchasedProduct p = new PurchasedProduct(product.getSku(), product.getQuantity(), product.getValue(), product.getDescription());
 		boolean addcard = false;
-		if (p.getSku() == null) {
+		if ((p.getSku() == null)||(p.getColor() == null) || (p.getDepartment() == null)
+				|| (p.getCategory() == null) || (p.getSize() == null)) {
 			return addcard;
 		} else {
 
@@ -116,7 +119,7 @@ public class VendasService {
 							p8.setValue(Stock.searchProductInList(x).getValue());
 							Stock.searchProductInList(x)
 									.setQuantity(Stock.searchProductInList(x).getQuantity() - p8.getQuantity());
-							Stock.updateProduto(Stock.searchProductInList(x));
+							Stock.updateProduct(Stock.searchProductInList(x));
 							priceToBil = (p8.getValue() * p8.getQuantity()) + priceToBil;
 
 						}
