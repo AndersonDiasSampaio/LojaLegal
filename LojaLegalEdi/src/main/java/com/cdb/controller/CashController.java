@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cdb.service.CashRegisterService;
-import com.cdb.service.VendasService;
+import com.cdb.service.SalesService;
 
 @RestController
 public class CashController {
 	@Autowired
-	VendasService vendaService;
+	SalesService vendaService;
 	@Autowired
 	CashRegisterService cashService;
 	public CashController() {
