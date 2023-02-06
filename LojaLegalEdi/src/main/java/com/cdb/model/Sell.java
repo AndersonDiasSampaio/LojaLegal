@@ -35,7 +35,7 @@ public class Sell implements Serializable {
 	private long id;
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name = "pessoa_id")
-	private Pessoa pessoa;
+	private People pessoa;
 	@Column
 	private String dateTime;
 	@Column
@@ -46,14 +46,14 @@ public class Sell implements Serializable {
 	private List<PurchasedProduct> products = new ArrayList();
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
 	@JoinColumn(name = "pagamento_id")
-	Pagamento tipoDePagamento;
+	Payment tipoDePagamento;
 
 	
 
 	public Sell() {
 		// TODO Auto-generated constructor stub
-		this.tipoDePagamento = new Pagamento();
-		this.pessoa = new Pessoa();
+		this.tipoDePagamento = new Payment();
+		this.pessoa = new People();
 	}
 
 	public Double getTotal() {
@@ -78,26 +78,26 @@ public class Sell implements Serializable {
 		dateTime = a.substring(0, 10);
 	}
 
-	public Pessoa getPessoa() {
+	public People getPessoa() {
 		return pessoa;
 	}
 
 	public void setPessoa(String cpf, String endereco, String nome) {
-		this.pessoa = new Pessoa();
+		this.pessoa = new People();
 		this.pessoa.setCpf(cpf);
-		this.pessoa.setEndereco(endereco);
+		this.pessoa.setAddress(endereco);
 		this.pessoa.setNome(nome);
 
 	}
 
-	public Pagamento getTipoDePagamento() {
+	public Payment getTipoDePagamento() {
 		return tipoDePagamento;
 	}
 
 	public void setTipoDePagamento(String tipoDePagamento, String value) {
-		this.tipoDePagamento = new Pagamento();
-		this.tipoDePagamento.setCodigo(tipoDePagamento);
-		this.tipoDePagamento.setTipo(value);
+		this.tipoDePagamento = new Payment();
+		this.tipoDePagamento.setType(tipoDePagamento);
+		this.tipoDePagamento.setCode(value);
 
 	}
 
