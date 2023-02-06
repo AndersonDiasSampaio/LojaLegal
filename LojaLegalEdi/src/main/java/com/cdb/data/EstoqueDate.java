@@ -58,5 +58,10 @@ public class EstoqueDate  {
 		return p;
 	}
 	
-
+	public void updatePrice(double price, String sku) {
+		this.produtoRepository.updateProdutoPriceBySku(price, sku);
+	}
+	public void updateDescription(String Description, String sku) {
+		this.produtoRepository.updateProdutoSku(Description, sku);
+	}
 }

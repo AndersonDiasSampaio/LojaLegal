@@ -25,7 +25,7 @@ import lombok.Data;
 @Table(name = "pagamento")
 @Data
 @JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
-public class Pagamento implements Serializable {
+public class Payment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@JsonIgnore
 	@Id
@@ -33,52 +33,53 @@ public class Pagamento implements Serializable {
 	@Column(name="id")
 	private long id;
 	@Column
-	private String codigo;
+	private String code;
 	@Enumerated(EnumType.STRING)
-	private PaymentEnum tipo;
+	private PaymentEnum type;
 
 	@OneToMany(mappedBy = "tipoDePagamento", fetch = FetchType.LAZY)
 	@JsonIgnore
-	private List<Sell> Vendas = new ArrayList();
+	private List<Sell> sales = new ArrayList();
 
 	public long getId() {
 		return id;
 	}
 
-	public List<Sell> getVendas() {
-		return Vendas;
+	public List<Sell> getSales() {
+		return sales;
 	}
 
-	public Pagamento() {
+	public Payment() {
 
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public String getCode() {
+		return code;
 	}
 
-	public void setTipo(String tipo) {
-		this.codigo = tipo;
+	public void setCode(String tipo) {
+		this.code = tipo;
 	}
 
 	public PaymentEnum getTipo() {
-		return tipo;
+		return type;
 	}
 
-	public void setCodigo(String codigo) {
-		this.tipo = PaymentEnum.getCategoriaEnum(codigo);
+	public void setType(String type) {
+		
+		this.type = PaymentEnum.getCategoriaEnum(type);
 	}
 
-	public Pagamento(String tipo, PaymentEnum codigo, List<Sell> vendas) {
+	public Payment(String tipo, PaymentEnum codigo, List<Sell> vendas) {
 		super();
-		this.codigo = tipo;
-		this.tipo = codigo;
-		Vendas = vendas;
+		this.code = tipo;
+		this.type = codigo;
+		sales = vendas;
 	}
 
 	@Override
 	public String toString() {
-		return "Pagamento [id=" + id + ", codigo=" + codigo + ", tipo=" + tipo + "]";
+		return "Pagamento [id=" + id + ", codigo=" + code + ", tipo=" + type + "]";
 	}
 
 }
