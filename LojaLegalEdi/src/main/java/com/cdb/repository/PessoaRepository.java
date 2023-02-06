@@ -2,8 +2,8 @@ package com.cdb.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.cdb.model.Pessoa;
+import com.cdb.model.People;
 
-public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+public interface PessoaRepository extends JpaRepository<People, Long> {
 
 }
