@@ -11,7 +11,7 @@ import com.cdb.model.Product;
 import com.cdb.repository.ProdutoRepository;
 
 @Service
-public class EstoqueService {
+public class StockService {
 
 	@Autowired
 	private EstoqueDate stock;
@@ -49,9 +49,7 @@ public class EstoqueService {
 		} else {
 			if ((searchProductbySku(produto.getSku()) == null)) {
 				stock.save(produtoSetado);
-				// fazer uns ifs aqui pra verificar se o produto é nulo, colocar um bloco
-				// trycatch quando for pegar um produto com sku e verificar se algum é nulo na
-				// classe produto.
+
 				status= true;
 				return status;
 			} else {
@@ -66,12 +64,18 @@ public class EstoqueService {
 
 	}
 
-//excluir o produto
-	//mudei pra boolean era string
+
 	public boolean deleteProduct(String sku) {
-//quem usar isso vai usar hhtp ok ou http not found
 		
 		return this.stock.delete(sku);
 
+	}
+	
+	public void updatePrice(double price, String sku) {
+		this.stock.updatePrice(price, sku);
+	}
+	
+	public void updateDescription(String Description, String sku) {
+		this.stock.updateDescription(Description, sku);
 	}
 }
