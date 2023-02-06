@@ -11,6 +11,9 @@ public interface ProdutoRepository extends JpaRepository<Product, Long> {
 	@Modifying
 	@Query(value = "update produto u set u.description = ? where u.sku = ?", nativeQuery = true)
 	int updateProdutoSku(String description , String sku);
+	@Modifying
+	@Query(value = "update produto u set u.value = ? where u.sku = ?", nativeQuery = true)
+	int updateProdutoPriceBySku(Double value , String sku);
 	Product findBySku(String sku);
 	Long deleteBySku(String sku);
 }
