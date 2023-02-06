@@ -21,7 +21,7 @@ import lombok.Data;
 @Table(name = "pessoa")
 @Data
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-public class Pessoa implements Serializable {
+public class People implements Serializable {
 	private static final long serialVersionUID = 1L;
 	@JsonIgnore
 	@Id
@@ -33,27 +33,27 @@ public class Pessoa implements Serializable {
 	@Column
 	private String cpf;
 	@Column
-	private String endereco;
+	private String address;
 
 	@OneToMany(mappedBy = "pessoa", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Sell> Vendas = new ArrayList();
 
-	public Pessoa(String nome, String cpf, String endereco) {
+	public People(String nome, String cpf, String endereco) {
 		super();
 		this.nome = nome;
 		this.cpf = cpf;
-		this.endereco = endereco;
+		this.address = endereco;
 	}
 
 	public long getId() {
 		return id;
 	}
 
-	public Pessoa() {
+	public People() {
 		this.nome = "Nome nao informado";
 		this.cpf = "CPF nao informado";
-		this.endereco = "endereco nao informado";
+		this.address = "endereco nao informado";
 		// TODO Auto-generated constructor stub
 	}
 
@@ -73,17 +73,17 @@ public class Pessoa implements Serializable {
 		this.cpf = cpf;
 	}
 
-	public String getEndereco() {
-		return endereco;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setAddress(String endereco) {
+		this.address = endereco;
 	}
 
 	@Override
 	public String toString() {
-		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", endereco=" + endereco + "]";
+		return "Pessoa [nome=" + nome + ", cpf=" + cpf + ", endereco=" + address + "]";
 	}
 
 	public List<Sell> getVendas() {
