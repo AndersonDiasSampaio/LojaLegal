@@ -61,7 +61,7 @@ public class Payment implements Serializable {
 		this.code = tipo;
 	}
 
-	public PaymentEnum getTipo() {
+	public PaymentEnum getType() {
 		return type;
 	}
 
