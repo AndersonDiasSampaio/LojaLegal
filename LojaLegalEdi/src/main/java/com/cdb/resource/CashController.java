@@ -1,4 +1,4 @@
-package com.cdb.controller;
+package com.cdb.resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;

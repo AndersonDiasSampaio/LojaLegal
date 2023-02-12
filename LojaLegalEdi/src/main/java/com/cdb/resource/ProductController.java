@@ -1,4 +1,4 @@
-package com.cdb.controller;
+package com.cdb.resource;
 
 import java.util.List;
 
