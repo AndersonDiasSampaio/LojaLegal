@@ -150,10 +150,10 @@ public class Product implements Serializable {
 			setSize(SizeEnum.getTamanhoEnum(sku.substring(9, 12)));
 		
 		} catch (Exception e) {
-			this.category = null;
-			this.color = null;
-			this.department = null;
-			this.size = null;
+			setCategory(null);
+			setColor(null);	
+			setDepartment(null);
+			setSize(null);
 		}
 	}
 
