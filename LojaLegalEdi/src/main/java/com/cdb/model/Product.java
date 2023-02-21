@@ -20,7 +20,7 @@ import lombok.Data;
 
 @Entity
 @Table(name = "produto")
-@Data
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Product implements Serializable {
 
@@ -65,19 +65,27 @@ public class Product implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
  
-	public void setDepartment(DepartmentEnum department) {
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	private void setDepartment(DepartmentEnum department) {
 		this.department = department;
 	}
 
-	public void setCategory(CategoryEnum category) {
+	private void setCategory(CategoryEnum category) {
 		this.category = category;
 	}
 
-	public void setColor(ColorEnum color) {
+	private void setColor(ColorEnum color) {
 		this.color = color;
 	}
 
-	public void setSize(SizeEnum size) {
+	private void setSize(SizeEnum size) {
 		this.size = size;
 	}
 
@@ -134,10 +142,13 @@ public class Product implements Serializable {
 	private void dados() {
 		
 		try {
-			this.category = CategoryEnum.getCategoriaEnum(sku.substring(0, 3));
-			this.color = ColorEnum.getCorEnum(sku.substring(3, 6));
-			this.department = DepartmentEnum.getDepartamentoEnum(sku.substring(6, 9));
-			this.size = SizeEnum.getTamanhoEnum(sku.substring(9, 12));
+			
+		
+			setCategory(CategoryEnum.getCategoriaEnum(sku.substring(0, 3)));
+			setColor(ColorEnum.getCorEnum(sku.substring(3, 6)));	
+			setDepartment(DepartmentEnum.getDepartamentoEnum(sku.substring(6, 9)));
+			setSize(SizeEnum.getTamanhoEnum(sku.substring(9, 12)));
+		
 		} catch (Exception e) {
 			this.category = null;
 			this.color = null;
