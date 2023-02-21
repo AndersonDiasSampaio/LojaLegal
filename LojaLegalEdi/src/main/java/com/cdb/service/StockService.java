@@ -58,6 +58,7 @@ public class StockService {
 				produtoSetado.setId(searchProductbySku(produto.getSku()).getId());
 				stock.update(produtoSetado);
 				status= true;
+				
 				return status;
 			}
 		}
