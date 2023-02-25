@@ -76,51 +76,6 @@ public class SellControler {
 
 	}
 
-	/*
-	 * @RequestMapping(method = RequestMethod.POST, value = "/adprodutos") public
-	 * boolean setProduto(@RequestBody Produto produto) {
-	 * 
-	 * return vendasService.addProductCard(produto, produto.getQuantidade()); }
-	 * 
-	 * @RequestMapping(method = RequestMethod.GET, value = "/produtos") public
-	 * ResponseEntity<Object> getProdutosInTheCar() {
-	 * 
-	 * return
-	 * ResponseEntity.status(HttpStatus.ACCEPTED).body(vendasService.getSellData().
-	 * listProduct()); }
-	 * 
-	 * @RequestMapping(method = RequestMethod.POST, value =
-	 * "/buyprodutos/{PaymentMethod}/{valueBancaryData}") public void
-	 * buyProdutos1(@PathVariable String PaymentMethod, @PathVariable String
-	 * valueBancaryData,
-	 * 
-	 * @RequestBody Pessoa pessoa) {
-	 * 
-	 * // Produto a = new Produto("SIMazuMASPEQ", 5, 20d, "teste");
-	 * 
-	 * vendasService.sellStockTestAndBuy(pessoa.getCpf(), PaymentMethod,
-	 * valueBancaryData, pessoa.getNome(), pessoa.getEndereco());
-	 * 
-	 * vendasRepository.save(vendasService.getSellData().getSell());
-	 * vendasService.cancel();
-	 * 
-	 * 
-	 * }
-	 * 
-	 * @RequestMapping(method = RequestMethod.GET, value = "/produtoshist") public
-	 * List<Venda> getHistoryofSell() { List<Venda> v = vendasRepository.findAll();
-	 * 
-	 * return v; }
-	 * 
-	 * 
-	 * @RequestMapping(method = RequestMethod.DELETE, value = "/delprodutocard")
-	 * public String deleteProduto(@RequestBody String Sku) {
-	 * vendasRepository.deleteById((long) 6); // pessoaRepository.deleteById((long)
-	 * 7);
-	 * 
-	 * return vendasService.excluirProduto(Sku);
-	 * 
-	 * }
-	 */
+
 
 }
