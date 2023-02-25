@@ -22,7 +22,6 @@ public class EstoqueDate  {
 	
 	
 	public void save(Object obj) {
-
 		this.produtoRepository.save((Product) obj);
 
 		
