@@ -19,7 +19,7 @@ import lombok.Data;
 
 @Entity
 @Table(name = "pessoa")
-@Data
+
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class People implements Serializable {
 	private static final long serialVersionUID = 1L;
